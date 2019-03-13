@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebSocket</title>
+</head>
+<body>
+    <script>
+        // Вместо http используют протокол ws.
+        let klientSock = new WebSocket('ws://localhost:8787');
+        console.log(klientSock);
+        klientSock.onclose= (event) => {
+            console.log(event);
+        }
+        klientSock.onerror= (event) => {
+            console.log(event);
+        }
+        klientSock.onmessage= (event) => {
+            console.log('You have 1 new message!', event.data);
+        }
+        klientSock.onopen = (event) => {
+            console.log('Socket connected successfully');
+            setTimeout(() => {
+                // Посылка сообщения 
+                klientSock.send('Hey from socket!')
+            },2000)
+        }
+    
+    
+    
+    
+    
+    </script>
+</body>
+</html>
